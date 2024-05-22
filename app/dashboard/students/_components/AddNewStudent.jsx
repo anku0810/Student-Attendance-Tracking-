@@ -14,9 +14,10 @@ import { Input } from "@/components/ui/input";
 import GlobalApi from "@/app/_services/GlobalApi";
 import { toast } from "sonner";
 import { LoaderIcon } from "lucide-react";
+
 function AddNewStudent({refreshData}) {
     const[open,setOpen]=useState(false);
-    const[classes,setClasses]=useState([]);
+    const [grades,setGrades]=useState([]);
     const[loading,setLoading]=useState(false);
     const {
       register,
@@ -27,17 +28,19 @@ function AddNewStudent({refreshData}) {
     } = useForm()
 
     useEffect(()=>{
-      GetAllClassList();
-    },[])
+      GetAllGradesList();
+  },[])
 
-    const GetAllClassList=()=>{
-      GlobalApi.GetAllClass().then(resp=>{
-        setClasses(resp.data);
+  const GetAllGradesList=()=>{
+      GlobalApi.GetAllGrades().then(resp=>{
+          setGrades(resp.data);
+          
       })
-    }
+  }
+
     const onSubmit=(data)=>{
       setLoading(true) 
-      GlobalApi.CreatenewStudent(data).then(resp=>{
+      GlobalApi.CreateNewStudent(data).then(resp=>{
         console.log("--",resp);
         if(resp.data)
           {
@@ -51,7 +54,7 @@ function AddNewStudent({refreshData}) {
     }
   return (
     <div>
-      <Button onClick={()=>setOpen(true)}>Add New Student</Button>
+      <Button onClick={()=>setOpen(true)}>+ Add New Student</Button>
       <Dialog open={open}>
         <DialogContent>
           <DialogHeader>
@@ -63,10 +66,10 @@ function AddNewStudent({refreshData}) {
                 <Input placeholder="Ex: Steve Jobs" {...register('name',{required:true})}/>
               </div>
               <div className="flex flex-col py-2" >
-                <label>Select Class </label>
-                  <select className="p-3 border rounded-lg" {...register('class',{required:true})}>
-                    {classes.map((item,index)=>(
-                       <option key={index} value={item.class}>{item.class}</option>
+                <label>Select Grade </label>
+                  <select className="p-3 border rounded-lg" {...register('grade',{required:true})}>
+                    {grades.map((item,index)=>(
+                       <option key={index} value={item.grade}>{item.grade}</option>
                     ))}
                   </select>
               </div>
@@ -88,6 +91,7 @@ function AddNewStudent({refreshData}) {
                     <option value={'B+'}>B+</option>
                     <option value={'AB+'}>AB+</option>
                     <option value={'AB-'}>AB-</option>
+                    <option value={'B-'}>B-</option>
                   </select>
               </div>
               <div className="flex gap-3 items-center justify-end mt-5 ">

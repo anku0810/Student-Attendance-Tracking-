@@ -1,26 +1,23 @@
-import { boolean, int, mysqlTable } from "drizzle-orm/mysql-core";
-import { varchar } from "drizzle-orm/pg-core";
+import { boolean, int, mysqlTable, varchar } from "drizzle-orm/mysql-core";
 
-export const CLASS=mysqlTable('class',{
-        id:int('id',{length:11}).primaryKey(),
-        class:varchar('class',{length:10}).notNull()
-    });
+export const GRADES=mysqlTable('grades',{
+    id:int('id',{length:11}).primaryKey(),
+    grade:varchar('grade',{length:10}).notNull()
+});
 
-
-export const STUDENTS=mysqlTable('students',{  // mysqlTable(Tablename)
+export const STUDENTS=mysqlTable('students',{
     id:int('id',{length:11}).autoincrement().primaryKey(),
-    name:varchar('name',{length:40}).notNull(),
-    class:varchar('class',{length:10}).notNull(),
-    contact:varchar('contact',{length:20}),
-    address:varchar('address',{length:120}),
+    name:varchar('name',{length:20}).notNull(),
+    grade:varchar('grade',{length:10}).notNull(),
+    address:varchar('address',{length:50}),
+    contact:varchar('contact',{length:11}),
     blood:varchar('blood',{length:5}),
 })
 
-export const ATTENDANCE= mysqlTable('attendance',{
+export const ATTENDACE=mysqlTable('attendance',{
     id:int('id',{length:11}).autoincrement().primaryKey(),
     studentId:int('studentId',{length:11}).notNull(),
     present:boolean('present').default(false),
-    day:int('day',{length:11}).notNull(),
-    date:varchar('date',{length:20}).notNull()
+    day:int('day',{length:11}).notNull(),//22
+    date:varchar('date',{length:20}).notNull() //05/2024
 });
-

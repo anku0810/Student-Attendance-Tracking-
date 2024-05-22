@@ -28,8 +28,7 @@ function StudentListTable({ studentList,refreshData }) {
     return(
     <AlertDialog>
       <AlertDialogTrigger>
-        {" "}
-        <Button variant="destructive">
+        <Button size ="sm" variant="destructive">
           <Trash />
         </Button>
       </AlertDialogTrigger>
@@ -52,9 +51,10 @@ function StudentListTable({ studentList,refreshData }) {
   const [colDefs, setColDefs] = useState([
     { field: "id", filter: true },
     { field: "name", filter: true },
+    { field: "grade", filter:true},
     { field: "contact", filter: true },
     { field: "address", filter: true },
-    { field: "blood", filter: true },
+    { field: "blood", filter: true},
     { field: "action", cellRenderer: CustomButtons },
   ]);
 

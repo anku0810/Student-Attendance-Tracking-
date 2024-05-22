@@ -1,23 +1,23 @@
 import { db } from "@/utils";
-import { ATTENDANCE, STUDENTS } from "@/utils/schema";
-import { and, eq, desc } from "drizzle-orm"; // Added desc import
+import { ATTENDACE, STUDENTS } from "@/utils/schema";
+import { and, desc, eq, sql } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
-export async function GET(req) {
-    const searchParams = req.nextUrl.searchParams;
-    const date = searchParams.get('date');
-    const grade = searchParams.get('class');
+export async function GET(req){
+     const searchParams=req.nextUrl.searchParams;
+     const date=searchParams.get('date')
+     const grade=searchParams.get('grade')
 
-    const result = await db.select({
-        day: ATTENDANCE.day,
-        presentCount: sql`count(${ATTENDANCE.day})`
-    })
-        .from(ATTENDANCE)
-        .leftJoin(STUDENTS, and(eq(ATTENDANCE.studentId, STUDENTS.id), eq(ATTENDANCE.date, date)))
-        .groupBy(ATTENDANCE.day)
-        .where(eq(STUDENTS.class, grade))
-        .orderBy(desc(ATTENDANCE.day))
-        .limit(7);
+     const result=await db.select({
+        day:ATTENDACE.day,
+        presentCount:sql`count(${ATTENDACE.day})`
+     }).from(ATTENDACE)
+     .leftJoin(STUDENTS, and (eq(ATTENDACE.studentId,STUDENTS.id),eq(ATTENDACE.date,date)))
+     .groupBy(ATTENDACE.day)
+     .where(eq(STUDENTS.grade,grade))
+     .orderBy(desc(ATTENDACE.day))
+     .limit(7)
 
-    return NextResponse.json(result);
+     return NextResponse.json(result);
+
 }
