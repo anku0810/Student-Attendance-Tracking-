@@ -1,7 +1,7 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Dasboard Page
-[Screenshot 2024-06-11 141236](https://github.com/anku0810/Student-Attendance-Tracking-/assets/114290163/3b3ee949-6279-48b2-80f8-b2b051e81d85)
+![Screenshot 2024-06-11 141236](https://github.com/anku0810/Student-Attendance-Tracking-/assets/114290163/3b3ee949-6279-48b2-80f8-b2b051e81d85)
 
 ## Students Section
 ![Screenshot 2024-06-11 141313](https://github.com/anku0810/Student-Attendance-Tracking-/assets/114290163/ba7737a1-3e52-40e2-8cce-dda64b973bb2)
